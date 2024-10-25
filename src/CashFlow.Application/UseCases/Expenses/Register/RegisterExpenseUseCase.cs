@@ -1,3 +1,4 @@
+using AutoMapper;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using CashFlow.Domain.Entities;
@@ -11,29 +12,27 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
     private readonly IExpensesRepository _repository;
     private readonly IUnityOfWork _unitOfWork;
-    public RegisterExpenseUseCase(IExpensesRepository repository, IUnityOfWork unitOfWork)
+    private readonly IMapper _mapper;
+    public RegisterExpenseUseCase(
+        IExpensesRepository repository, 
+        IUnityOfWork unitOfWork,
+        IMapper mapper)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
     public async Task<ResponseRegisteredExpenseJson> ExecuteAsync(RequestRegisterExpenseJson request)
     {
         Validate(request);
 
-        var entity = new Expense
-        {
-            Amount = request.Amount,
-            Date = request.Date,
-            Description = request.Description,
-            Title = request.Title,
-            PaymentType = (Domain.Enums.PaymentType)request.PaymentType
-        };
+        var entity = _mapper.Map<Expense>(request);
 
         await _repository.Add(entity);
         await _unitOfWork.Commit();
 
-        return new ResponseRegisteredExpenseJson();
+        return _mapper.Map<ResponseRegisteredExpenseJson>(entity);
     }
 
     private void Validate(RequestRegisterExpenseJson request)
