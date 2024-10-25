@@ -9,5 +9,5 @@ internal class UnityOfWork : IUnityOfWork
     {
         _context = context;
     }
-    public void Commit() => _context.SaveChanges();
+    public async Task Commit() => await _context.SaveChangesAsync();
 }
