@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
@@ -16,7 +15,7 @@ public class AutoMapping : Profile
 
     private void RequestToEntity()
     {
-        CreateMap<RequestRegisterExpenseJson, Expense>();
+        CreateMap<RequestExpenseJson, Expense>();
     }
 
     private void EntityToResponse()

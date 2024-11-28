@@ -1,4 +1,4 @@
-using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Application.UseCases.Expenses;
 using CashFlow.Communication.Enums;
 using CashFlow.Exception;
 using CommonTestUtilities.Requests;
@@ -11,7 +11,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Success()
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
 
         var request = RequestRegisterExpenseJsonBuilder.Build();
 
@@ -24,12 +24,14 @@ public class RegisterExpenseValidatorTests
     [InlineData("")]
     [InlineData("         ")]
     [InlineData(null)]
-    public void Error_Title_Empty(string title)
+    public void Error_Title_Empty(string? title)
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
 
         var request = RequestRegisterExpenseJsonBuilder.Build();
-        request.Title = title;
+        
+        if (title is not null)
+            request.Title = title;
 
         var result = validator.Validate(request);
 
@@ -40,7 +42,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Error_Date_Future()
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
 
         var request = RequestRegisterExpenseJsonBuilder.Build();
         request.Date = DateTime.UtcNow.AddDays(1);
@@ -54,7 +56,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Error_Payment_Type()
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
 
         var request = RequestRegisterExpenseJsonBuilder.Build();
         request.PaymentType = (PaymentType)700;
@@ -72,7 +74,7 @@ public class RegisterExpenseValidatorTests
     [InlineData(-7)]
     public void Error_Amount_Invalid(decimal amount)
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
 
         var request = RequestRegisterExpenseJsonBuilder.Build();
         request.Amount = amount;
