@@ -139,5 +139,23 @@ namespace CashFlow.Domain.Reports {
                 return ResourceManager.GetString("TITLE", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to EXPENSES_FOR.
+        /// </summary>
+        public static string EXPENSES_FOR {
+            get {
+                return ResourceManager.GetString("EXPENSES_FOR", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to TOTAL_SPENT_IN.
+        /// </summary>
+        public static string TOTAL_SPENT_IN {
+            get {
+                return ResourceManager.GetString("TOTAL_SPENT_IN", resourceCulture);
+            }
+        }
     }
 }

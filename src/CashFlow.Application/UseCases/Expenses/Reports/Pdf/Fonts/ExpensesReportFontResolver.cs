@@ -1,3 +1,4 @@
+using System.Reflection;
 using PdfSharp.Fonts;
 
 namespace CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts;
@@ -6,11 +7,24 @@ public class ExpensesReportFontResolver : IFontResolver
 {
     public FontResolverInfo? ResolveTypeface(string familyName, bool bold, bool italic)
     {
-        throw new NotImplementedException();
+        return new FontResolverInfo(familyName);
     }
 
     public byte[]? GetFont(string faceName)
     {
-        throw new NotImplementedException();
+        var stream = ReadFontFile(faceName);
+        stream ??= ReadFontFile(FontHelper.DEFAULT_FONT);
+    
+        var length = (int)stream!.Length;
+        var data = new byte[length];
+        _ = stream.Read(buffer: data, offset: 0, count: length);
+
+        return data;
+    }
+
+    private Stream? ReadFontFile(string faceName)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        return assembly.GetManifestResourceStream($"CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts.{faceName}.ttf");
     }
 }
