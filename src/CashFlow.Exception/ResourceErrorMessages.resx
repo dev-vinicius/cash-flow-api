@@ -141,4 +141,20 @@
     <value>Expense not found</value>
     <comment/>
   </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>The name is required</value>
+    <comment/>
+  </data>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>The e-mail is required</value>
+    <comment/>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>The e-mail is invalid</value>
+    <comment/>
+  </data>
+  <data name="PASSWORD_INVALID" xml:space="preserve">
+    <value>Your password must be at least 8 characters long, containing at least one uppercase letter, one lowercase letter, one number and one special character (e.g. !, ?, *, .)</value>
+    <comment/>
+  </data>
 </root>

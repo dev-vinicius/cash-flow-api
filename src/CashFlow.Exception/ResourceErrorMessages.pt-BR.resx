@@ -141,4 +141,20 @@
     <value>Despesa não encontrada</value>
     <comment/>
   </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>O nome não pode estar vazio</value>
+    <comment/>
+  </data>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>O e-mail não pode estar vazio</value>
+    <comment/>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>O e-mail é inválido</value>
+    <comment/>
+  </data>
+  <data name="PASSWORD_INVALID" xml:space="preserve">
+    <value>Sua senha deve ter no mínimo 8 caracteres, contendo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caracter especial (por exemplo !, ?, *, .)</value>
+    <comment/>
+  </data>
 </root>

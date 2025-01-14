@@ -1,6 +1,7 @@
 using System;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Domain.Security;
 using CashFlow.Infrastructure.DataAccess;
 using CashFlow.Infrastructure.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -13,14 +14,15 @@ public static class DependencyInjectionExtension
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        AddDbContext(services, configuration);   
+        AddDbContext(services, configuration);
         AddRepositories(services);
+        services.AddScoped<IPasswordEncripter, Security.BCrypt>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("Connection");
-        services.AddDbContext<CashFlowDbContext>(config => 
+        services.AddDbContext<CashFlowDbContext>(config =>
             config.UseSqlite(connectionString));
     }
     private static void AddRepositories(IServiceCollection services)
