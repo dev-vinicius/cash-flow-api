@@ -19,4 +19,9 @@ internal class UserRepository : IUserReadOnlyRepository, IUserWriteOnlyRepositor
     {
         return await _context.Users.AnyAsync(x => x.Email.Equals(email));
     }
+
+    public async Task<User?> GetUserByEmailAndPasswordAsync(string email, string password)
+    {
+        return await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(email) && x.Password.Equals(password));
+    }
 }
