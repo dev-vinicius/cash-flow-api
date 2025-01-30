@@ -157,4 +157,8 @@
     <value>Sua senha deve ter no mínimo 8 caracteres, contendo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caracter especial (por exemplo !, ?, *, .)</value>
     <comment/>
   </data>
+  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+    <value>E-mail já foi registrado</value>
+    <comment/>
+  </data>
 </root>

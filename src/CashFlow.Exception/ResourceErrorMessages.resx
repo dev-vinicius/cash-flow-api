@@ -157,4 +157,8 @@
     <value>Your password must be at least 8 characters long, containing at least one uppercase letter, one lowercase letter, one number and one special character (e.g. !, ?, *, .)</value>
     <comment/>
   </data>
+  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+    <value>Email already registered</value>
+    <comment/>
+  </data>
 </root>

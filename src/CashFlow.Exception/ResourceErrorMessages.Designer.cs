@@ -178,5 +178,16 @@ namespace CashFlow.Exception
                 return ResourceManager.GetString("PASSWORD_INVALID", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to EMAIL_ALREADY_REGISTERED.
+        /// </summary>
+        public static string EMAIL_ALREADY_REGISTERED
+        {
+            get
+            {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
     }
 }
