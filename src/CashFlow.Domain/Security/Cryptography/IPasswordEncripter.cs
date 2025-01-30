@@ -1,6 +1,6 @@
 using System;
 
-namespace CashFlow.Domain.Security;
+namespace CashFlow.Domain.Security.Cryptography;
 
 public interface IPasswordEncripter
 {
