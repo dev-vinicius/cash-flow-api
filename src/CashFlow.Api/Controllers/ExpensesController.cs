@@ -19,10 +19,9 @@ namespace CashFlow.Api.Controllers
         public async Task<IActionResult> GetAllExpenses([FromServices] IGetExpensesUseCase useCase)
         {
             var result = await useCase.ExecuteAsync();
-            
             if (result.Expenses.Count != 0)
                 return Ok(result);
-            
+
             return NoContent();
         }
 
@@ -31,7 +30,7 @@ namespace CashFlow.Api.Controllers
         [ProducesResponseType(typeof(ResponseExpenseJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetById([FromServices] IGetExpenseByIdUseCase useCase,
-            [FromRoute] long id) 
+            [FromRoute] long id)
         {
             var result = await useCase.ExecuteAsync(id);
             return Ok(result);
@@ -40,7 +39,7 @@ namespace CashFlow.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredExpenseJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Register([FromBody] RequestExpenseJson request, 
+        public async Task<IActionResult> Register([FromBody] RequestExpenseJson request,
             [FromServices] IRegisterExpenseUseCase useCase)
         {
             var result = await useCase.ExecuteAsync(request);
@@ -66,7 +65,7 @@ namespace CashFlow.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(
-            [FromServices] IDeleteExpenseUseCase useCase, 
+            [FromServices] IDeleteExpenseUseCase useCase,
             [FromRoute] long id)
         {
             await useCase.ExecuteAsync(id);
