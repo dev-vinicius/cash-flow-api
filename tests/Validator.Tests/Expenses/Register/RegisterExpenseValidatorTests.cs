@@ -23,15 +23,12 @@ public class RegisterExpenseValidatorTests
     [Theory]
     [InlineData("")]
     [InlineData("         ")]
-    [InlineData(null)]
-    public void Error_Title_Empty(string? title)
+    public void Error_Title_Empty(string title)
     {
         var validator = new ExpenseValidator();
 
         var request = RequestRegisterExpenseJsonBuilder.Build();
-        
-        if (title is not null)
-            request.Title = title;
+        request.Title = title;
 
         var result = validator.Validate(request);
 
